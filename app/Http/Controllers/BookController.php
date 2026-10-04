@@ -8,13 +8,32 @@ class BookController extends Controller
 {
     public function index()
     {
-        $books = [
-            'Clean Code',
-            'Refactoring'
-        ];
+        $books = Book::latest()->get();
 
-        return view('books.index', [
-            'books' => $books
-        ]);
+        return view('books.index', compact('books'));
+    }
+    public function create()
+    {
+        return view('books.create');
+    }
+    public function store(Request $request)
+    {
+        // Diisi pada tahap berikutnya.
+    }
+    public function show(Book $book)
+    {
+        return view('books.show', compact('book'));
+    }
+    public function edit(Book $book)
+    {
+        // Diisi pada tahap update.
+    }
+    public function update(Request $request, Book $book)
+    {
+        // Diisi pada tahap update.
+    }
+    public function destroy(Book $book)
+    {
+        // Diisi pada tahap delete.
     }
 }
