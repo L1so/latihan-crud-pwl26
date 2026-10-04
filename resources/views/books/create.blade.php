@@ -33,6 +33,16 @@ value="{{ old('year') }}"
 @error('year')
 <div class="error">{{ $message }}</div>
 @enderror
+<label for="isbn">ISBN</label>
+<input
+id="isbn"
+type="text"
+name="isbn"
+value="{{ old('isbn') }}"
+>
+@error('isbn')
+<div class="error">{{ $message }}</div>
+@enderror
 <button type="submit">Simpan</button>
 <a href="{{ route('books.index') }}">Batal</a>
 </form>

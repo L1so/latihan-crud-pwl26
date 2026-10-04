@@ -13,6 +13,7 @@
 <th>Judul</th>
 <th>Penulis</th>
 <th>Tahun</th>
+<th>ISBN</th>
 <th>Aksi</th>
 </tr>
 </thead>
@@ -22,6 +23,7 @@
     <td>{{ $book->title }}</td>
 <td>{{ $book->author }}</td>
 <td>{{ $book->year }}</td>
+<td>{{ $book->isbn }}</td>
 <td>
 <a href="{{ route('books.show', $book) }}">Detail</a>
 <a href="{{ route('books.edit', $book) }}">Edit</a>
@@ -39,7 +41,7 @@ onsubmit="return confirm('Hapus buku ini?')"
 </tr>
 @empty
 <tr>
-<td colspan="4">Belum ada data buku.</td>
+<td colspan="5">Belum ada data buku.</td>
 </tr>
 @endforelse
 </tbody>

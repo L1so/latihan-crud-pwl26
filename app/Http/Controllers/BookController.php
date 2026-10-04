@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
 
 class BookController extends Controller
@@ -17,7 +18,7 @@ class BookController extends Controller
     {
         return view('books.create');
     }
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
         
         Book::create($request->validated());
@@ -33,7 +34,7 @@ class BookController extends Controller
     {
         return view('books.edit', compact('book'));
     }
-    public function update(Request $request, Book $book)
+    public function update(UpdateBookRequest $request, Book $book)
     {
         $book->update($request->validated());
         return redirect()

@@ -12,7 +12,7 @@ class StoreBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,6 +26,7 @@ class StoreBookRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'author' => ['required', 'string', 'max:150'],
             'year' => ['required', 'integer', 'between:1900,2100'],
+            'isbn' => ['required', 'string', 'max:20', 'unique:books,isbn'],
         ];
     }
 }
