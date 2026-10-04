@@ -19,12 +19,8 @@ class BookController extends Controller
     }
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'author' => ['required', 'string', 'max:150'],
-            'year' => ['required', 'integer', 'between:1900,2100'],
-        ]);
-        Book::create($validated);
+        
+        Book::create($request->validated());
         return redirect()
             ->route('books.index')
             ->with('success', 'Buku berhasil ditambahkan.');
@@ -35,14 +31,20 @@ class BookController extends Controller
     }
     public function edit(Book $book)
     {
-        // Diisi pada tahap update.
+        return view('books.edit', compact('book'));
     }
     public function update(Request $request, Book $book)
     {
-        // Diisi pada tahap update.
+        $book->update($request->validated());
+        return redirect()
+            ->route('books.index')
+            ->with('success', 'Buku berhasil diperbarui.');
     }
     public function destroy(Book $book)
     {
-        // Diisi pada tahap delete.
+        $book->delete();
+        return redirect()
+            ->route('books.index')
+            ->with('success', 'Buku berhasil dihapus.');
     }
 }
