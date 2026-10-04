@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -18,7 +19,15 @@ class BookController extends Controller
     }
     public function store(Request $request)
     {
-        // Diisi pada tahap berikutnya.
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'author' => ['required', 'string', 'max:150'],
+            'year' => ['required', 'integer', 'between:1900,2100'],
+        ]);
+        Book::create($validated);
+        return redirect()
+            ->route('books.index')
+            ->with('success', 'Buku berhasil ditambahkan.');
     }
     public function show(Book $book)
     {
